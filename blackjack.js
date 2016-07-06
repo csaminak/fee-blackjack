@@ -1,13 +1,16 @@
 
-function runGame() {
+(function runGame() {
 
     var display = document.getElementById('cards');
-    cards = ['A', '2','3', '4','5','6','7','7','8', '9', '10', 'J', 'Q', 'K']
+    cards = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+
+    function card() {
+        return Math.floor(Math.random() * cards.length);
+    }
 
     function hit() {
-        var card = Math.round(Math.random() * cards.length);
-        display.innerHTML = cards[card];
-        checkResult('no', true);
+        display.innerHTML = cards[card()];
+        checkResult(false, true);
     }
 
     /**
@@ -24,41 +27,41 @@ function runGame() {
 
         cards.forEach(function (card, i) {
             if (Number(card)) {
-                cardValue = cardValue + card;
+                cardValue += card;
+            } else if (cards[i] === 'J' || cards[i] === 'Q' || cards[i] === 'J') {
+                card = 10;
+                cardValue += card;
+            } else if (cards[i] === 'A') {
+                card = 11;
+                cardValue += card;
             }
-
-            if (card === 'J' || card == 'Q' || card === 'J')
-                cardValue = cardValue + 10;
-
-            if (cards[i] = 'A') { cardValue = cardValue += 11; }
         });
 
-        if (cardValue < 15 && standing) {
+        if ((cardValue < 15) && standing) {
             alert('Dealer wins.');
-        }
-        if (cardValue < 18 && standing) {
+        } else if ((cardValue < 18) && standing) {
             alert('Push!');
-        }
-        if (cardValue > 18 & hitting || cardValue === 21) {
+        } else if ((cardValue > 18) & hitting || cardValue === 21) {
             alert('You win!');
-        }
-        if (cardValue > 21) {
+        } else if (cardValue > 21) {
             alert('You Bust.');
         }
 
     display.innerHTML = '';
-    card = Math.round(Math.random() * cards.length);
+    card = Math.floor(Math.random() * cards.length);
     display.innerHTML = cards[card];
     }
 
     document.getElementById('stand').addEventListener('click', function() {
-        checkREsult(true);
+        checkResult(true, false);
     });
 
-    document.getElementById('hit').addEventListener('click',function(){checkResult(null, true);});
+    document.getElementById('hit').addEventListener('click',function() {
+        checkResult(false, true);
+    });
 
-    card = Math.round(Math.random() * cards.length);
+    card = Math.floor(Math.random() * cards.length);
     display.innerHTML = cards[card];
-    card = Math.round(Math.random() * cards.length);
+    card = Math.floor(Math.random() * cards.length);
     display.innerHTML = display.innerHTML + ' ' + cards[card];
-}
+})();
