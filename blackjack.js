@@ -9,15 +9,10 @@
         return cards[card];
     }
 
-    display.innerHTML = getCard();
-
-    display.innerHTML = display.innerHTML + ' ' + getCard();
-
     function hit() {
-        display.innerHTML = getCard();
+        display.innerHTML += (' ' + getCard());
         checkResult(false, true);
     }
-
 
     /**
      * Check the result of the current cards and alert the game result
@@ -27,18 +22,16 @@
      * @return {void}
      */
     function checkResult(standing, hitting) {
-        //takes two cards that are in the html,
-        //and splits their string value into an array of two strings
         cards = display.innerHTML.split(' ');
 
         var cardValue = 0;
-
         var i, card;
+
         for (i=0; i<cards.length; i++) {
             card = cards[i];
             if (Number(card)) {
                 cardValue += (Number(card));
-            } else if (card === 'J' || card === 'Q' || card === 'J') {
+            } else if (card === 'J' || card === 'Q' || card === 'K') {
                 card = 10;
                 cardValue += card;
             } else if (card === 'A') {
@@ -47,26 +40,29 @@
             }
         }
 
-        if ((cardValue < 15) && standing) {
+        if (cardValue < 15 && standing) {
             alert('Dealer wins.');
-        } else if ((cardValue < 18) && standing) {
+        } else if (cardValue < 18 && standing) {
             alert('Push!');
-        } else if ((cardValue > 18) & hitting || cardValue === 21) {
+        } else if (( ((cardValue > 18) && (cardValue <=21)) && standing) || cardValue === 21) {
             alert('You win!');
         } else if (cardValue > 21) {
             alert('You Bust.');
         }
 
-    display.innerHTML = '';
-    display.innerHTML = getCard();
+        display.innerHTML = getCard();
+        display.innerHTML = display.innerHTML + ' ' + getCard();
     }
 
     document.getElementById('stand').addEventListener('click', function() {
         checkResult(true, false);
     });
 
-    document.getElementById('hit').addEventListener('click',function() {
-        checkResult(false, true);
+    document.getElementById('hit').addEventListener('click', function() {
+        hit();
     });
 
+    display.innerHTML = getCard();
+    display.innerHTML = display.innerHTML + ' ' + getCard();
+    checkResult(false, false);
 })();
