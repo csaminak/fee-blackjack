@@ -2,11 +2,11 @@
 (function runGame() {
 
     var display = document.getElementById('cards');
-    var cards = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
+    var deck = ['A','2','3','4','5','6','7','8','9','10','J','Q','K'];
 
     function getCard() {
-        var card = Math.floor(Math.random() * cards.length);
-        return cards[card];
+        var card = Math.floor(Math.random() * deck.length);
+        return deck[card];
     }
 
     function hit() {
@@ -22,7 +22,7 @@
      * @return {void}
      */
     function checkResult(standing, hitting) {
-        cards = display.innerHTML.split(' ');
+        var cards = display.innerHTML.split(' ');
 
         var cardValue = 0;
         var i, card;
@@ -40,11 +40,11 @@
             }
         }
 
-        if (cardValue < 15 && standing) {
+        if (cardValue < 16 && standing) {
             alert('Dealer wins.');
-        } else if (cardValue < 18 && standing) {
+        } else if ( (cardValue >= 16 && cardValue <= 18) && standing ) {
             alert('Push!');
-        } else if (( ((cardValue > 18) && (cardValue <=21)) && standing) || cardValue === 21) {
+        } else if (( (cardValue >= 19 && cardValue <= 21) && standing ) || cardValue === 21) {
             alert('You win!');
         } else if (cardValue > 21) {
             alert('You Bust.');
