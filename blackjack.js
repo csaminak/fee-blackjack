@@ -2,7 +2,7 @@
 function runGame() {
 
     var display = document.getElementById('cards');
-    cards = ['A', '2','3', '4','5',"6",'7','7','8', '9', "10", 'J', 'Q', 'K']
+    cards = ['A', '2','3', '4','5','6','7','7','8', '9', '10', 'J', 'Q', 'K']
 
     function hit() {
         var card = Math.round(Math.random() * cards.length);
