@@ -60,8 +60,7 @@
         checkResult(false, true);
     });
 
-    card = Math.floor(Math.random() * cards.length);
-    display.innerHTML = cards[card];
-    card = Math.floor(Math.random() * cards.length);
-    display.innerHTML = display.innerHTML + ' ' + cards[card];
+    display.innerHTML = cards[card()];
+
+    display.innerHTML = display.innerHTML + ' ' + cards[card()];
 })();
