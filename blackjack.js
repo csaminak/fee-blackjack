@@ -23,9 +23,8 @@
      */
     function checkResult(standing, hitting) {
         var cards = display.innerHTML.split(' ');
-
         var cardValue = 0;
-        var i, card;
+        var i, card, pushCondition, winCondition, dealerWin;
 
         for (i=0; i<cards.length; i++) {
             card = cards[i];
@@ -40,12 +39,19 @@
             }
         }
 
-        if (cardValue < 16 && standing) {
+        pushCondition = (cardValue >= 16) && (cardValue <= 18);
+        winCondition = (cardValue >= 19) && (cardValue <= 21);
+        dealerWin = cardValue < 16;
+
+        if ( (dealerWin && standing) || (dealerWin && hitting) ) {
             alert('Dealer wins.');
-        } else if ( (cardValue >= 16 && cardValue <= 18) && standing ) {
+
+        } else if ( (pushCondition && standing) || (pushCondition && hitting) ) {
             alert('Push!');
-        } else if (( (cardValue >= 19 && cardValue <= 21) && standing ) || cardValue === 21) {
+
+        } else if ( cardValue === 21 || (winCondition && standing) || (winCondition && hitting) ) {
             alert('You win!');
+
         } else if (cardValue > 21) {
             alert('You Bust.');
         }
