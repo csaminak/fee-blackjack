@@ -26,16 +26,22 @@
         var cardValue = 0;
         var i, card, pushCondition, winCondition, dealerWin;
 
+        console.log(cardValue);
+
         for (i=0; i<cards.length; i++) {
             card = cards[i];
+            console.log(cards[i]);
             if (Number(card)) {
                 cardValue += (Number(card));
+                console.log(cardValue);
             } else if (card === 'J' || card === 'Q' || card === 'K') {
                 card = 10;
                 cardValue += card;
+                console.log(cardValue);
             } else if (card === 'A') {
                 card = 11;
                 cardValue += card;
+                console.log(cardValue);
             }
         }
 
@@ -43,21 +49,15 @@
         winCondition = (cardValue >= 19) && (cardValue <= 21);
         dealerWin = cardValue < 16;
 
-        if ( (dealerWin && standing) || (dealerWin && hitting) ) {
+        if (dealerWin && standing) {
             alert('Dealer wins.');
-
         } else if ( (pushCondition && standing) || (pushCondition && hitting) ) {
             alert('Push!');
-
-        } else if ( cardValue === 21 || (winCondition && standing) || (winCondition && hitting) ) {
+        } else if ( (cardValue === 21) || (winCondition && standing) || (winCondition && hitting) ) {
             alert('You win!');
-
         } else if (cardValue > 21) {
             alert('You Bust.');
         }
-
-        display.innerHTML = getCard();
-        display.innerHTML = display.innerHTML + ' ' + getCard();
     }
 
     document.getElementById('stand').addEventListener('click', function() {
@@ -68,7 +68,14 @@
         hit();
     });
 
-    display.innerHTML = getCard();
-    display.innerHTML = display.innerHTML + ' ' + getCard();
+    function card1() {
+        return display.innerHTML = getCard();
+    }
+     function card2() {
+         return display.innerHTML += ' ' + getCard();
+     }
+
+    card1();
+    card2();
     checkResult(false, false);
 })();
