@@ -26,22 +26,16 @@
         var cardValue = 0;
         var i, card, pushCondition, winCondition, dealerWin;
 
-        console.log(cardValue);
-
         for (i=0; i<cards.length; i++) {
             card = cards[i];
-            console.log(cards[i]);
             if (Number(card)) {
                 cardValue += (Number(card));
-                console.log(cardValue);
             } else if (card === 'J' || card === 'Q' || card === 'K') {
                 card = 10;
                 cardValue += card;
-                console.log(cardValue);
             } else if (card === 'A') {
                 card = 11;
                 cardValue += card;
-                console.log(cardValue);
             }
         }
 
@@ -51,12 +45,24 @@
 
         if (dealerWin && standing) {
             alert('Dealer wins.');
-        } else if ( (pushCondition && standing) || (pushCondition && hitting) ) {
+            new card1();
+            new card2();
+            checkResult(false, false);
+        } else if (pushCondition && standing) {
             alert('Push!');
+            new card1();
+            new card2();
+            checkResult(false, false);
         } else if ( (cardValue === 21) || (winCondition && standing) || (winCondition && hitting) ) {
             alert('You win!');
+            new card1();
+            new card2();
+            checkResult(false, false);
         } else if (cardValue > 21) {
             alert('You Bust.');
+            new card1();
+            new card2();
+            checkResult(false, false);
         }
     }
 
