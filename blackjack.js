@@ -73,14 +73,16 @@
         hit();
     });
 
+
     function card1() {
-        return display.innerHTML = getCard();
+        display.innerHTML = getCard();
     }
-     function card2() {
-        return display.innerHTML += ' ' + getCard();
+    function card2() {
+        display.innerHTML += ' ' + getCard();
      }
 
     card1();
     card2();
     checkResult(false, false);
+
 })();
