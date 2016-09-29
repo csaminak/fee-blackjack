@@ -1,2 +1,3 @@
-# fee-blackjack
-An incomplete game of blackjack
+#blackjack
+
+Take an incomplete game of blackjack and fix the functions to create a functional game of blackjack.
