@@ -1,4 +1,3 @@
-
 (function runGame() {
 
     var display = document.getElementById('cards');
@@ -78,7 +77,7 @@
         return display.innerHTML = getCard();
     }
      function card2() {
-         return display.innerHTML += ' ' + getCard();
+        return display.innerHTML += ' ' + getCard();
      }
 
     card1();
