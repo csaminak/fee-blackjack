@@ -70,15 +70,15 @@
     });
 
     document.getElementById('hit').addEventListener('click', function() {
-        hit();
+        checkResult(false, true);
     });
 
 
     function card1() {
-        display.innerHTML = getCard();
+        return display.innerHTML = getCard();
     }
     function card2() {
-        display.innerHTML += ' ' + getCard();
+        return display.innerHTML += ' ' + getCard();
      }
 
     card1();
