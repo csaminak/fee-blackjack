@@ -70,7 +70,7 @@
     });
 
     document.getElementById('hit').addEventListener('click', function() {
-        checkResult(false, true);
+        hit();
     });
 
 
