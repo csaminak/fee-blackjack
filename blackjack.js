@@ -44,24 +44,17 @@
 
         if (dealerWin && standing) {
             alert('Dealer wins.');
-            new card1();
-            new card2();
-            checkResult(false, false);
+            callCard();
         } else if (pushCondition && standing) {
             alert('Push!');
-            new card1();
-            new card2();
-            checkResult(false, false);
-        } else if ( (cardValue === 21) || (winCondition && standing) || (winCondition && hitting) ) {
+            callCard();
+        } else if ( (cardValue === 21) || (winCondition && standing) ||
+                                                (winCondition && hitting) ) {
             alert('You win!');
-            new card1();
-            new card2();
-            checkResult(false, false);
+            callCard();
         } else if (cardValue > 21) {
             alert('You Bust.');
-            new card1();
-            new card2();
-            checkResult(false, false);
+            callCard();
         }
     }
 
@@ -73,12 +66,23 @@
         hit();
     });
 
+    /**
+     * Calls the next pair of cards and checks their result automatically.
+     *
+     * @return {Void}
+     */
+    function callCard() {
+        card1();
+        card2();
+        checkResult(false, false);
+    }
 
     function card1() {
-        return display.innerHTML = getCard();
+        display.innerHTML = getCard();
     }
+
     function card2() {
-        return display.innerHTML += ' ' + getCard();
+        display.innerHTML += ' ' + getCard();
      }
 
     card1();
